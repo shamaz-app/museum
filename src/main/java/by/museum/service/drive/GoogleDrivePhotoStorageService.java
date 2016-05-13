@@ -20,19 +20,15 @@ public class GoogleDrivePhotoStorageService implements CloudPhotoStorageService 
 
     /**
      * Метод позволяет загрузить фото на GoogleDrive и сделать его доступным всем в интернете.
-     * @param fileName    �?мя файла с расширением
+     * @param fileName    Имя файла с расширением
      * @param fileContent     Содержимое файла
      * @return Прямая ссылка на загруженное фото
      */
     @Override
-    public String savePhotoAndGetDirectLink(String fileName, String fileContent) {
-
-        File file = new File().setTitle(fileName);
-        File.Thumbnail thumbnail = new File.Thumbnail();
-        thumbnail.setImage(fileContent);
-        thumbnail.setMimeType("image/png");
-        file.setThumbnail(thumbnail);
-        File uploadedFile = drive.uploadFile(file);
+    public String savePhotoAndGetDirectLink(String fileName, byte[] fileContent) {
+        File uploadFileMetadata = new File().setTitle(fileName);
+        AbstractInputStreamContent uploadFileContent = new ByteArrayContent("image/jpeg", fileContent);
+        File uploadedFile = drive.uploadFile(uploadFileMetadata, uploadFileContent);
         File sharedFile = drive.shareFileToAnyone(uploadedFile);
         return sharedFile.getWebContentLink();
     }

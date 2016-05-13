@@ -50,13 +50,21 @@ public class ShowpieceController extends GenericController<Showpiece, ShowpieceS
                 if (service.get(entity.getId()).getImageUrl() != null && (entity.getImageUrl() == null || entity.getImageUrl().equals(entity.getImageUrl()))) {
                     googleDrivePhotoStorageService.deletePhotoByDirectLink(entity.getImageUrl());
                 }
-                return googleDrivePhotoStorageService.savePhotoAndGetDirectLink(entity.getName(), entity.getImage());
+                byte[] byteArray = getByteArrayFromString(entity.getImage());
+                return googleDrivePhotoStorageService.savePhotoAndGetDirectLink(entity.getName(), byteArray);
             } else if (service.get(entity.getId()).getImageUrl() != null && entity.getImageUrl() == null) {
                 googleDrivePhotoStorageService.deletePhotoByDirectLink(entity.getImageUrl());
             }
             return entity.getImageUrl();
         } else {
-            return googleDrivePhotoStorageService.savePhotoAndGetDirectLink(entity.getName(), entity.getImage());
+
+            byte[] byteArray = getByteArrayFromString(entity.getImage());
+            return googleDrivePhotoStorageService.savePhotoAndGetDirectLink(entity.getName(), byteArray);
         }
+    }
+
+    private byte[] getByteArrayFromString(String string){
+
+        return Base64.decodeBase64(string.split("base64,")[1]);
     }
 }

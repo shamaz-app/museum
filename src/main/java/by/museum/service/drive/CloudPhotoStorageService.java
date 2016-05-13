@@ -8,11 +8,11 @@ public interface CloudPhotoStorageService {
 
     /**
      * Метод позволяет сохранить фотографию в каком-либо(зависит от реализации) облачном хранилище.
-     * @param fileName    �?мя файла с расширением
-     * @param fileContent Содержимое файла
+     * @param fileName    Имя файла с расширением
+     * @param content Содержимое файла
      * @return Прямая ссылка на загруженное фото
      */
-    String savePhotoAndGetDirectLink(String fileName, String fileContent);
+    String savePhotoAndGetDirectLink(String fileName, byte[] content);
 
     /**
      * Метод позволяет удалить фото с облачного хранилища по его прямой ссылке.

@@ -32,24 +32,25 @@ public class GoogleDriveService {
     private String secretFileName = "C:\\museum-secret.json";
     private Drive drive;
 
+
     /**
      * Метод для загрузки файлов на GoogleDrive.
-     * @param file
+     * @param fileMetadata Метаданные файла,например: имя, MIME тип и т.д.
+     * @param fileContent  Содержимое файла
      * @return Метаданные файла после загрузки
      */
-    public File uploadFile(File file){
+    public File uploadFile(File fileMetadata, AbstractInputStreamContent fileContent){
         try{
-            if(file != null){
-                return drive.files().insert(file).execute();
+            if(fileContent != null){
+                return drive.files().insert(fileMetadata, fileContent).execute();
             } else {
-                return drive.files().insert(file).execute();
+                return drive.files().insert(fileMetadata).execute();
             }
         } catch(IOException e) {
             LOGGER.error(e);
             throw new RuntimeException("Unable upload file on GoogleDrive", e.getCause());
         }
     }
-
     /**
      * Метод для удаления файла на GoogleDrive.
      * @param deletedFileId    �?дентификатор удаляемого файла

@@ -16,12 +16,10 @@ import java.util.Set;
 @Table(name = "MUSEUM_BUILD ")
 public class MuseumBuild extends NamedEntity {
 
-    @JsonIgnore
     @ManyToOne(targetEntity = Street.class)
     @JoinColumn(name = "ID_STREET")
     private Street street;
 
-    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "MUSEUM_CONTACT",
             joinColumns = @JoinColumn(name = "ID_MUSEUM"),
@@ -29,7 +27,7 @@ public class MuseumBuild extends NamedEntity {
     private Set<Contact> contacts;
 
     @Column(name = "HOUSE_NUMBER", nullable = false)
-    private String gouseNumber;
+    private String houseNumber;
 
     @Column(name = "COUNT_SHOWPIECE")
     private Integer countShowpiece;
@@ -42,12 +40,12 @@ public class MuseumBuild extends NamedEntity {
         this.street = street;
     }
 
-    public String getGouseNumber() {
-        return gouseNumber;
+    public String getHouseNumber() {
+        return houseNumber;
     }
 
-    public void setGouseNumber(String gouseNumber) {
-        this.gouseNumber = gouseNumber;
+    public void setHouseNumber(String houseNumber) {
+        this.houseNumber = houseNumber;
     }
 
     public Integer getCountShowpiece() {

@@ -28,9 +28,6 @@ public class Showpiece extends NamedEntity{
     @JoinColumn(name = "ID_THEMATIC_SECTION", nullable = false)
     private ThematicSection thematicSection;
 
-//    @ManyToOne(targetEntity = Showroom.class)
-//    @JoinColumn(name)
-
     @OneToOne(targetEntity = State.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_STATE")
     private State state;
