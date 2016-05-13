@@ -1,7 +1,9 @@
 package by.museum.entities.template;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
@@ -10,9 +12,10 @@ import javax.persistence.MappedSuperclass;
  */
 @MappedSuperclass
 public class IdEntity {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(generator = "common")
+    @GenericGenerator(name = "common", strategy = "increment")
+    @Column(name = "ID", unique = true, nullable = false, insertable = true, updatable = false)
     private Long id;
 
     public Long getId() {
