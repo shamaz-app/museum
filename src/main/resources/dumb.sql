@@ -95,7 +95,7 @@ CREATE TABLE `contact` (
 
 LOCK TABLES `contact` WRITE;
 /*!40000 ALTER TABLE `contact` DISABLE KEYS */;
-INSERT INTO `contact` VALUES (1,1,'(29)777-77-77');
+INSERT INTO `contact` VALUES (1,1,'(29)777-77-77'),(2,2,'kart_garelly@tut.by');
 /*!40000 ALTER TABLE `contact` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -161,6 +161,7 @@ CREATE TABLE `museum_build` (
   `name` varchar(45) NOT NULL,
   `house_number` varchar(45) NOT NULL,
   `count_showpiece` int(11) DEFAULT '0',
+  `image_url` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FC_MUSEUM_STREET_idx` (`id_street`),
   CONSTRAINT `FC_MUSEUM_STREET` FOREIGN KEY (`id_street`) REFERENCES `street` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -173,7 +174,7 @@ CREATE TABLE `museum_build` (
 
 LOCK TABLES `museum_build` WRITE;
 /*!40000 ALTER TABLE `museum_build` DISABLE KEYS */;
-INSERT INTO `museum_build` VALUES (1,1,'Картинная галерея','75',20);
+INSERT INTO `museum_build` VALUES (1,1,'Картинная галерея','75',20,'https://docs.google.com/uc?id=0B7aQThvXd024ZUowZGRJYVY1WWs&export=download'),(2,2,'Лувр','72',0,NULL);
 /*!40000 ALTER TABLE `museum_build` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -200,7 +201,7 @@ CREATE TABLE `museum_contact` (
 
 LOCK TABLES `museum_contact` WRITE;
 /*!40000 ALTER TABLE `museum_contact` DISABLE KEYS */;
-INSERT INTO `museum_contact` VALUES (1,1);
+INSERT INTO `museum_contact` VALUES (1,1),(1,2);
 /*!40000 ALTER TABLE `museum_contact` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -226,7 +227,7 @@ CREATE TABLE `origin_source` (
 
 LOCK TABLES `origin_source` WRITE;
 /*!40000 ALTER TABLE `origin_source` DISABLE KEYS */;
-INSERT INTO `origin_source` VALUES (1,'Искусство','',''),(2,'Археология','',''),(3,'Артефакт','','');
+INSERT INTO `origin_source` VALUES (1,'Искусство','',''),(2,'Археология','арх.',''),(3,'Артефакт','','');
 /*!40000 ALTER TABLE `origin_source` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -266,7 +267,7 @@ CREATE TABLE `showpiece` (
 
 LOCK TABLES `showpiece` WRITE;
 /*!40000 ALTER TABLE `showpiece` DISABLE KEYS */;
-INSERT INTO `showpiece` VALUES (1,'Первый трактор МТЗ','','1',1,3,'55',1,1,'https://docs.google.com/uc?id=0B7aQThvXd024LWJXQzdiY0xLbGM&export=download'),(2,'Картина сальвадора дали','Три медведя','1',2,2,'200',2,1,'https://docs.google.com/uc?id=0B7aQThvXd024WmdyOVNPdFdJQ28&export=download'),(3,'Второй трактор МТЗ','','1',1,3,'54',1,1,NULL),(4,'Третий трактор МТЗ','','1',1,3,'54',1,1,NULL),(5,'Первый бульдозер АМКАДОРа','','1',1,4,'35',1,1,NULL),(7,'Портянка ивана баланара','Он в ней потел на TI 1',NULL,1,2,NULL,4,1,NULL),(10,'пашины дырявые джинсы','фывфыв',NULL,1,4,NULL,7,1,NULL),(19,'Первый морской узел','гагаг',NULL,1,1,NULL,16,1,NULL),(20,'фывфв','фыф',NULL,1,1,NULL,17,1,NULL),(21,'фывфв','фыф',NULL,1,1,NULL,18,1,NULL),(22,'фывфв','фыф',NULL,1,1,NULL,19,1,NULL),(23,'Клевый курсач','Самый лууучший',NULL,2,3,NULL,20,1,'https://docs.google.com/uc?id=0B7aQThvXd024MnVfUE83S1g0c00&export=download');
+INSERT INTO `showpiece` VALUES (1,'Первый трактор МТЗ','','1',1,3,'55',1,1,'https://docs.google.com/uc?id=0B7aQThvXd024SS1QMDhZWXFDaDA&export=download'),(2,'Картина сальвадора дали','Три медведя','1',2,2,'200',2,1,'https://docs.google.com/uc?id=0B7aQThvXd024Yzg3WDA5bVhJWFk&export=download'),(3,'Второй трактор МТЗ','','1',1,3,'54',1,1,NULL),(4,'Третий трактор МТЗ','','1',1,3,'54',1,1,NULL),(5,'Первый бульдозер АМКАДОРа','','1',1,4,'35',1,1,NULL),(10,'пашины дырявые джинсы','фывфыв',NULL,1,4,NULL,7,1,NULL),(19,'Первый морской узел','гагаг',NULL,1,1,NULL,16,1,NULL),(20,'фывфв','фыф',NULL,1,1,NULL,17,1,NULL),(21,'фывфв','фыф',NULL,1,1,NULL,18,1,NULL),(22,'фывфв','фыф',NULL,1,1,NULL,19,1,NULL);
 /*!40000 ALTER TABLE `showpiece` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -392,7 +393,7 @@ CREATE TABLE `state` (
 
 LOCK TABLES `state` WRITE;
 /*!40000 ALTER TABLE `state` DISABLE KEYS */;
-INSERT INTO `state` VALUES (1,1,'После производства первого трактора он был размещен на проходной',0),(2,1,'aaa',1),(4,2,'Дырка с монету на левом колене',NULL),(7,2,'Дырка справа',1),(16,1,'Как-будто сегодня связали',1),(17,1,'фывфвы',1),(18,1,'фывфвы',1),(19,1,'фывфвы',1),(20,1,'фывфыв',1);
+INSERT INTO `state` VALUES (1,1,'После производства первого трактора он был размещен на проходной',0),(2,1,'aaa',1),(7,2,'Дырка справа',1),(16,1,'Как-будто сегодня связали',1),(17,1,'фывфвы',1),(18,1,'фывфвы',1),(19,1,'фывфвы',1);
 /*!40000 ALTER TABLE `state` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -446,7 +447,7 @@ CREATE TABLE `street` (
 
 LOCK TABLES `street` WRITE;
 /*!40000 ALTER TABLE `street` DISABLE KEYS */;
-INSERT INTO `street` VALUES (1,1,3,'Независимости');
+INSERT INTO `street` VALUES (1,1,3,'Независимости'),(2,2,3,'Победы');
 /*!40000 ALTER TABLE `street` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -495,8 +496,59 @@ CREATE TABLE `thematic_section` (
 
 LOCK TABLES `thematic_section` WRITE;
 /*!40000 ALTER TABLE `thematic_section` DISABLE KEYS */;
-INSERT INTO `thematic_section` VALUES (1,'Картины'),(2,'Археологические находки до 10 тыс. лет до н.э.'),(3,'Сельскохозяйственная техника'),(4,'Строительная техника');
+INSERT INTO `thematic_section` VALUES (1,'Картины'),(2,'Археологические находки до 10 тыс. лет до н.э.'),(3,'Сельскохозяйственная техника'),(4,'Строительная техника'),(5,'asdasd');
 /*!40000 ALTER TABLE `thematic_section` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user` (
+  `ID` int(11) NOT NULL,
+  `LOGIN` varchar(45) DEFAULT NULL,
+  `PASSWORD` varchar(45) DEFAULT NULL,
+  `IS_ADMIN` tinyint(2) NOT NULL DEFAULT '0',
+  `LAST_LOGIN` datetime DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'admin','admin',1,NULL);
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_museums`
+--
+
+DROP TABLE IF EXISTS `user_museums`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_museums` (
+  `ID_USER` int(11) NOT NULL,
+  `ID_MUSEUM` int(11) NOT NULL,
+  PRIMARY KEY (`ID_USER`,`ID_MUSEUM`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_museums`
+--
+
+LOCK TABLES `user_museums` WRITE;
+/*!40000 ALTER TABLE `user_museums` DISABLE KEYS */;
+INSERT INTO `user_museums` VALUES (1,1),(1,2);
+/*!40000 ALTER TABLE `user_museums` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -516,4 +568,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-13 11:43:30
+-- Dump completed on 2016-05-16 12:34:46
