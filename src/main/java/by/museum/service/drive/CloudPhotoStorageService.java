@@ -19,4 +19,11 @@ public interface CloudPhotoStorageService {
      * @param photoLink    Прямая ссылка на фото
      */
     void deletePhotoByDirectLink(String photoLink);
+
+    /**
+     * Возвращает массив байтов для сохранения
+     * @param string строка в кодировке base64
+     * @return
+     */
+    byte[] getByteArrayFromString(String string);
 }

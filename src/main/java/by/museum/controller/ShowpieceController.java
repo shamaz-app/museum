@@ -50,7 +50,7 @@ public class ShowpieceController extends GenericController<Showpiece, ShowpieceS
                 if (service.get(entity.getId()).getImageUrl() != null && (entity.getImageUrl() == null || entity.getImageUrl().equals(entity.getImageUrl()))) {
                     googleDrivePhotoStorageService.deletePhotoByDirectLink(entity.getImageUrl());
                 }
-                byte[] byteArray = getByteArrayFromString(entity.getImage());
+                byte[] byteArray = googleDrivePhotoStorageService.getByteArrayFromString(entity.getImage());
                 return googleDrivePhotoStorageService.savePhotoAndGetDirectLink(entity.getName(), byteArray);
             } else if (service.get(entity.getId()).getImageUrl() != null && entity.getImageUrl() == null) {
                 googleDrivePhotoStorageService.deletePhotoByDirectLink(entity.getImageUrl());
@@ -58,13 +58,8 @@ public class ShowpieceController extends GenericController<Showpiece, ShowpieceS
             return entity.getImageUrl();
         } else {
 
-            byte[] byteArray = getByteArrayFromString(entity.getImage());
+            byte[] byteArray = googleDrivePhotoStorageService.getByteArrayFromString(entity.getImage());
             return googleDrivePhotoStorageService.savePhotoAndGetDirectLink(entity.getName(), byteArray);
         }
-    }
-
-    private byte[] getByteArrayFromString(String string){
-
-        return Base64.decodeBase64(string.split("base64,")[1]);
     }
 }
