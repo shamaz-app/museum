@@ -21,7 +21,7 @@ public class MuseumBuild extends NamedEntity implements GrantedAuthority {
     @JoinColumn(name = "ID_STREET")
     private Street street;
 
-    @ManyToMany
+    @ManyToMany(cascade=CascadeType.ALL)
     @JoinTable(name = "MUSEUM_CONTACT",
             joinColumns = @JoinColumn(name = "ID_MUSEUM"),
             inverseJoinColumns = @JoinColumn(name = "ID_CONTACT"))
