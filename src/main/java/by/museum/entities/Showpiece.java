@@ -32,6 +32,10 @@ public class Showpiece extends NamedEntity{
     @JoinColumn(name = "ID_STATE")
     private State state;
 
+    @ManyToOne(targetEntity = State.class)
+    @JoinColumn(name = "ID_SHOWROOM")
+    private Showroom showroom;
+
     @ManyToOne(targetEntity = MuseumBuild.class)
     @JoinColumn(name = "ID_MUSEUM", nullable = false)
     private MuseumBuild museum;

@@ -249,6 +249,7 @@ CREATE TABLE `showpiece` (
   `ID_STATE` int(11) DEFAULT NULL,
   `ID_MUSEUM` int(11) DEFAULT '1',
   `IMAGE_URL` varchar(300) DEFAULT NULL,
+  `ID_SHOWROOM` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `FC_SOURCE_OS_idx` (`ID_SOURCE`),
   KEY `FC_THEME_idx` (`ID_THEMATIC_SECTION`),
@@ -267,7 +268,7 @@ CREATE TABLE `showpiece` (
 
 LOCK TABLES `showpiece` WRITE;
 /*!40000 ALTER TABLE `showpiece` DISABLE KEYS */;
-INSERT INTO `showpiece` VALUES (1,'Первый трактор МТЗ','','1',1,3,'55',1,1,'https://docs.google.com/uc?id=0B7aQThvXd024SS1QMDhZWXFDaDA&export=download'),(2,'Картина сальвадора дали','Три медведя','1',2,2,'200',2,1,'https://docs.google.com/uc?id=0B7aQThvXd024Yzg3WDA5bVhJWFk&export=download'),(3,'Второй трактор МТЗ','','1',1,3,'54',1,1,NULL),(4,'Третий трактор МТЗ','','1',1,3,'54',1,1,NULL),(5,'Первый бульдозер АМКАДОРа','','1',1,4,'35',1,1,NULL),(10,'пашины дырявые джинсы','фывфыв',NULL,1,4,NULL,7,1,NULL),(19,'Первый морской узел','гагаг',NULL,1,1,NULL,16,1,NULL),(20,'фывфв','фыф',NULL,1,1,NULL,17,1,NULL),(21,'фывфв','фыф',NULL,1,1,NULL,18,1,NULL),(22,'фывфв','фыф',NULL,1,1,NULL,19,1,NULL);
+INSERT INTO `showpiece` VALUES (1,'Первый трактор МТЗ','','1',1,3,'55',1,1,'https://docs.google.com/uc?id=0B7aQThvXd024SS1QMDhZWXFDaDA&export=download',NULL),(2,'Картина сальвадора дали','Три медведя','1',2,2,'200',2,1,'https://docs.google.com/uc?id=0B7aQThvXd024Yzg3WDA5bVhJWFk&export=download',NULL),(3,'Второй трактор МТЗ','','1',1,3,'54',1,1,NULL,NULL),(4,'Третий трактор МТЗ','','1',1,3,'54',1,1,NULL,NULL),(5,'Первый бульдозер АМКАДОРа','','1',1,4,'35',1,1,NULL,NULL),(10,'пашины дырявые джинсы','фывфыв',NULL,1,4,NULL,7,1,NULL,NULL),(19,'Первый морской узел','гагаг',NULL,1,1,NULL,16,1,NULL,NULL),(20,'фывфв','фыф',NULL,1,1,NULL,17,1,NULL,NULL),(21,'фывфв','фыф',NULL,1,1,NULL,18,1,NULL,NULL),(22,'фывфв','фыф',NULL,1,1,NULL,19,1,NULL,NULL);
 /*!40000 ALTER TABLE `showpiece` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -301,6 +302,7 @@ DROP TABLE IF EXISTS `showroom`;
 CREATE TABLE `showroom` (
   `ID` int(11) NOT NULL,
   `SHOWROOM_NAME` varchar(45) NOT NULL,
+  `ID_MUSEUM` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -311,7 +313,7 @@ CREATE TABLE `showroom` (
 
 LOCK TABLES `showroom` WRITE;
 /*!40000 ALTER TABLE `showroom` DISABLE KEYS */;
-INSERT INTO `showroom` VALUES (1,'1'),(2,'2');
+INSERT INTO `showroom` VALUES (4,'Первый зал',1),(6,'Второй зал',1),(7,'Третий зал',1);
 /*!40000 ALTER TABLE `showroom` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -327,7 +329,6 @@ CREATE TABLE `showroom_content` (
   `ID_SHOWPIECE` int(11) NOT NULL,
   PRIMARY KEY (`ID_SHOWROOM`,`ID_SHOWPIECE`),
   KEY `FC_SHOWPIECE_CONTENT_idx` (`ID_SHOWPIECE`),
-  CONSTRAINT `FC_ROOM_CONTENT` FOREIGN KEY (`ID_SHOWROOM`) REFERENCES `showroom` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FC_SHOWPIECE_CONTENT` FOREIGN KEY (`ID_SHOWPIECE`) REFERENCES `showpiece` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -352,10 +353,7 @@ DROP TABLE IF EXISTS `showroom_thematic_section`;
 CREATE TABLE `showroom_thematic_section` (
   `ID_SHOWROOM` int(11) NOT NULL,
   `ID_THEME_SECTION` int(11) NOT NULL,
-  PRIMARY KEY (`ID_SHOWROOM`,`ID_THEME_SECTION`),
-  KEY `FC_THEME_SECTION_idx` (`ID_THEME_SECTION`),
-  CONSTRAINT `FC_SHOWROOM` FOREIGN KEY (`ID_SHOWROOM`) REFERENCES `showroom` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FC_THEME_SECTION` FOREIGN KEY (`ID_THEME_SECTION`) REFERENCES `thematic_section` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  PRIMARY KEY (`ID_SHOWROOM`,`ID_THEME_SECTION`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -568,4 +566,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-16 12:34:46
+-- Dump completed on 2016-05-18 12:18:57
